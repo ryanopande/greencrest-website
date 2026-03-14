@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+/* Custom color palette - Green tones inspired by school logo */
+@theme {
+  --color-green-light: #a8d5a3;
+  --color-green-medium: #6b9f5f;
+  --color-green-dark: #3d6b2f;
+  --color-green-darker: #2d4f22;
+  --color-cream: #f5f3f0;
+  --color-beige: #e8e4dd;
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-serif: Georgia, serif;
+}
+
+/* Base styles */
+body {
+  @apply text-gray-800 bg-cream font-sans antialiased;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Subtle fade-in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Section spacing */
+.section-padding {
+  @apply py-16 md:py-24;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply bg-green-dark text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-green-darker hover:shadow-lg;
+}
+
+.btn-secondary {
+  @apply bg-white text-green-dark border-2 border-green-dark px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-green-light hover:text-white;
+}
+
+/* Card styles */
+.card {
+  @apply bg-white rounded-lg shadow-md p-6 transition-all duration-300 hover:shadow-xl;
+}
+
+/* Typography */
+.heading-primary {
+  @apply text-3xl md:text-4xl lg:text-5xl font-bold text-green-darker mb-4;
+}
+
+.heading-secondary {
+  @apply text-2xl md:text-3xl font-semibold text-green-dark mb-3;
+}
+
+.heading-tertiary {
+  @apply text-xl md:text-2xl font-semibold text-green-dark mb-2;
+}
