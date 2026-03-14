@@ -1,0 +1,55 @@
+backend:
+  name: git-gateway
+  branch: main # Branch to update (optional; defaults to master)
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: "news"
+    label: "News Posts"
+    folder: "src/data/news"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "date" }
+      - { label: "Category", name: "category", widget: "select", options: ["Announcement", "Event", "Achievement", "Service"] }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Excerpt", name: "excerpt", widget: "text" }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "calendar"
+    label: "Calendar Events"
+    folder: "src/data/calendar"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}"
+    fields:
+      - { label: "Event Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "date" }
+      - { label: "Type", name: "type", widget: "select", options: ["academic", "exam", "holiday", "service", "event"] }
+      - { label: "Description", name: "description", widget: "text", required: false }
+
+  - name: "staff"
+    label: "Staff Members"
+    folder: "src/data/staff"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Name", name: "name", widget: "string" }
+      - { label: "Role", name: "role", widget: "string" }
+      - { label: "Photo", name: "photo", widget: "image", required: false }
+      - { label: "Bio", name: "bio", widget: "text", required: false }
+      - { label: "Category", name: "category", widget: "select", options: ["leadership", "teaching", "support"] }
+
+  - name: "gallery"
+    label: "Gallery Albums"
+    folder: "src/data/gallery"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Cover Image", name: "cover", widget: "image" }
+      - { label: "Date", name: "date", widget: "date" }
+      - { label: "Photo Count", name: "count", widget: "number", default: 0 }
