@@ -1,0 +1,88 @@
+---
+const navItems = [
+  { name: 'Home', href: '/' },
+  { name: 'About', href: '/about' },
+  { name: 'Academics', href: '/academics' },
+  { name: 'Admissions', href: '/admissions' },
+  { name: 'Student Life', href: '/student-life' },
+  { name: 'Staff', href: '/staff' },
+  { name: 'Calendar', href: '/calendar' },
+  // Temporarily hidden until content is ready (uncomment to re-enable)
+  // { name: 'News', href: '/news' },
+  // { name: 'Gallery', href: '/gallery' },
+  { name: 'Contact', href: '/contact' },
+];
+---
+
+<nav class="bg-white shadow-sm sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <!-- Logo -->
+      <div class="flex-shrink-0 flex items-center">
+        <a href="/" class="flex items-center space-x-3">
+          <img
+            src="/images/logo/logo.svg"
+            alt="Greencrest Advent School Logo"
+            class="h-12 w-auto"
+            onerror="this.onerror=null; this.src='/images/logo/logo.png'; this.style.display='block';"
+          />
+          <div class="hidden sm:block">
+            <h1 class="text-xl font-bold text-green-darker">Greencrest Advent School</h1>
+            <p class="text-xs text-gray-600">A Tradition of Excellence</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex lg:items-center lg:space-x-1">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-green-dark hover:bg-green-light/20 rounded-md transition-colors duration-200"
+          >
+            {item.name}
+          </a>
+        ))}
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="lg:hidden">
+        <button
+          id="mobile-menu-button"
+          class="text-gray-700 hover:text-green-dark focus:outline-none"
+          aria-label="Toggle menu"
+        >
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="hidden lg:hidden pb-4">
+      <div class="flex flex-col space-y-1">
+        {navItems.map((item) => (
+          <a
+            href={item.href}
+            class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-green-dark hover:bg-green-light/20 rounded-md transition-colors duration-200"
+          >
+            {item.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>
