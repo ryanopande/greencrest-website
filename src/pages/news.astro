@@ -1,0 +1,168 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// In production, this would come from a CMS
+const newsItems = [
+  {
+    id: 1,
+    title: 'School Opening for Term 1, 2024',
+    date: 'January 5, 2024',
+    category: 'Announcement',
+    excerpt: 'We are excited to welcome all students back for the new academic year. Classes begin on January 8, 2024.',
+    image: '/images/news/opening-2024.jpg',
+    featured: true
+  },
+  {
+    id: 2,
+    title: 'Annual Sports Day Success',
+    date: 'December 15, 2023',
+    category: 'Event',
+    excerpt: 'Our annual sports day was a tremendous success with students showcasing their talents in various competitions.',
+    image: '/images/news/sports-day.jpg',
+    featured: false
+  },
+  {
+    id: 3,
+    title: 'KCPE Results Celebration',
+    date: 'December 10, 2023',
+    category: 'Achievement',
+    excerpt: 'Congratulations to our Grade 9 students for their outstanding performance in the KCPE examinations.',
+    image: '/images/news/kcpe-results.jpg',
+    featured: false
+  },
+  {
+    id: 4,
+    title: 'Community Service Project',
+    date: 'November 20, 2023',
+    category: 'Service',
+    excerpt: 'Students participated in a community service project, visiting a local children\'s home and sharing love and gifts.',
+    image: '/images/news/community-service.jpg',
+    featured: false
+  },
+  {
+    id: 5,
+    title: 'Music Festival Participation',
+    date: 'November 5, 2023',
+    category: 'Achievement',
+    excerpt: 'Our school choir participated in the regional music festival and received excellent ratings.',
+    image: '/images/news/music-festival.jpg',
+    featured: false
+  },
+  {
+    id: 6,
+    title: 'Parent-Teacher Meeting',
+    date: 'October 25, 2023',
+    category: 'Announcement',
+    excerpt: 'Thank you to all parents who attended our parent-teacher meeting. Your partnership is invaluable.',
+    image: '/images/news/pta-meeting.jpg',
+    featured: false
+  },
+];
+---
+
+<BaseLayout title="News" description="Latest news, announcements, and achievements from Greencrest Advent School">
+  <!-- Page Header -->
+  <section class="bg-gradient-to-br from-green-dark to-green-darker text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">News & Announcements</h1>
+      <p class="text-xl text-green-light">Stay Updated with School News</p>
+    </div>
+  </section>
+
+  <!-- Featured News -->
+  {newsItems.filter(item => item.featured).length > 0 && (
+    <section class="section-padding bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {newsItems.filter(item => item.featured).map((item) => (
+          <div class="card overflow-hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              <div>
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  class="w-full h-64 lg:h-full object-cover rounded-lg"
+                  onerror="this.src='https://via.placeholder.com/800x600/a8d5a3/3d6b2f?text=News+Image'"
+                />
+              </div>
+              <div class="flex flex-col justify-center">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="px-3 py-1 bg-green-light text-green-dark rounded-full text-sm font-medium">
+                    {item.category}
+                  </span>
+                  <span class="text-gray-600 text-sm">{item.date}</span>
+                </div>
+                <h2 class="heading-secondary mb-4">{item.title}</h2>
+                <p class="text-gray-700 mb-6 text-lg">{item.excerpt}</p>
+                <a href={`/news/${item.id}`} class="btn-primary inline-block w-fit">
+                  Read More
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- All News -->
+  <section class="section-padding bg-cream">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="heading-primary text-center mb-12">All News</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {newsItems.map((item) => (
+          <div class="card overflow-hidden">
+            <img
+              src={item.image}
+              alt={item.title}
+              class="w-full h-48 object-cover mb-4"
+              onerror="this.src='https://via.placeholder.com/600x400/a8d5a3/3d6b2f?text=News'"
+            />
+            <div class="flex items-center gap-3 mb-3">
+              <span class="px-2 py-1 bg-green-light text-green-dark rounded text-xs font-medium">
+                {item.category}
+              </span>
+              <span class="text-gray-600 text-xs">{item.date}</span>
+            </div>
+            <h3 class="heading-tertiary mb-3">{item.title}</h3>
+            <p class="text-gray-700 mb-4">{item.excerpt}</p>
+            <a href={`/news/${item.id}`} class="text-green-dark hover:text-green-darker font-medium text-sm">
+              Read More →
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Subscribe to Updates -->
+  <section class="section-padding bg-green-dark text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6">Stay Connected</h2>
+      <p class="text-xl mb-8 text-green-light">
+        Subscribe to receive school news and updates directly to your email.
+      </p>
+      <form class="max-w-md mx-auto flex gap-4" id="newsletter-form">
+        <input
+          type="email"
+          placeholder="Your email address"
+          required
+          class="flex-1 px-4 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-green-light"
+        />
+        <button type="submit" class="btn-primary bg-white text-green-dark hover:bg-green-light">
+          Subscribe
+        </button>
+      </form>
+      <p class="text-sm text-green-light mt-4">
+        We respect your privacy. Unsubscribe at any time.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  document.getElementById('newsletter-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Thank you for subscribing! You will receive updates via email.');
+    e.target.reset();
+  });
+</script>

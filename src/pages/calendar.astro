@@ -1,0 +1,186 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// In production, this would come from a CMS
+const termDates = [
+  {
+    term: 'Term 1',
+    start: 'January 7, 2026 (Boarders) / January 8, 2026 (Day Scholars)',
+    end: 'March 31, 2026',
+    duration: '13 weeks'
+  },
+  {
+    term: 'Term 2',
+    start: 'May 6, 2026',
+    end: 'August 2, 2026',
+    duration: '13 weeks'
+  },
+  {
+    term: 'Term 3',
+    start: 'September 2, 2026',
+    end: 'November 29, 2026',
+    duration: '13 weeks'
+  }
+];
+
+const importantEvents = [
+  // Term 1 Events
+  { date: '7th January 2026', event: 'Opening Date (Boarders)', type: 'academic' },
+  { date: '8th January 2026', event: 'Opening Date (Day Scholars)', type: 'academic' },
+  { date: '14th January 2026', event: 'Opening Assessment', type: 'exam' },
+  { date: '7th – 17th January 2026', event: 'Ten days of Prayer', type: 'service' },
+  { date: '16th January 2026', event: 'Orientation /Annual General Meeting (AGM)', type: 'academic' },
+  { date: '1st February 2026', event: 'Visiting Day', type: 'academic' },
+  { date: '10th February 2026', event: 'Games and Sports Day', type: 'academic' },
+  { date: 'February 11, 2026', event: 'ECD & Lower Primary Academic Trip', type: 'academic' },
+  { date: 'February 12, 2026', event: 'Primary & Junior School Academic Trip', type: 'academic' },
+  { date: 'February 16-20, 2026', event: 'Mid-Term Assessments', type: 'exam' },
+  { date: 'February 25 - March 3, 2026', event: 'Half-Term (Boarders / Day Scholars)', type: 'academic' },
+  { date: 'February 27, 2026', event: 'Class Representatives Meeting', type: 'academic' },
+  { date: 'March 12, 2026', event: 'Scouts Day / Playgroup Second Clinic', type: 'service' },
+  { date: 'March 20, 2026', event: 'Environmental Day', type: 'service' },
+  { date: 'March 23-27, 2026', event: 'End Term Examinations', type: 'exam' },
+  { date: 'March 25-28, 2026', event: 'Vacation Bible School (VBS)', type: 'service' },
+  { date: 'March 26, 2026', event: 'Global Children\'s Day', type: 'academic' },
+  { date: 'March 31, 2026', event: 'Closing Day', type: 'academic' },
+  // Term 2 & 3 (placeholder dates - to be updated)
+  { date: 'May 6, 2026', event: 'Term 2 Opening', type: 'academic' },
+  { date: 'June 1, 2026', event: 'Madaraka Day - No School', type: 'holiday' },
+  { date: 'September 2, 2026', event: 'Term 3 Opening', type: 'academic' },
+  { date: 'October 10, 2026', event: 'Mashujaa Day - No School', type: 'holiday' },
+  { date: 'October 20, 2026', event: 'KPSEA Examinations Begin', type: 'exam' },
+  { date: 'November 29, 2026', event: 'End of Term 3 / Closing Day', type: 'academic' },
+];
+
+const examPeriods = [
+  { period: 'Term 1 Opening Assessment', dates: 'January 14, 2026' },
+  { period: 'Term 1 Mid-Term Assessments', dates: 'February 16-20, 2026' },
+  { period: 'Term 1 End Term Examinations', dates: 'March 23-27, 2026' },
+  { period: 'Term 2 Examinations', dates: 'July 22-26, 2026' },
+  { period: 'Term 3 Examinations', dates: 'November 18-22, 2026' },
+  { period: 'KPSEA Examinations', dates: 'October 20-24, 2026' },
+];
+
+const visitingDays = [
+  { date: 'February 2, 2026', time: '10:00 AM - 5:00 PM', notes: 'Term 1 Visiting Day' },
+  { date: 'May 25, 2026', time: '10:00 AM - 5:00 PM', notes: 'Term 2 Visiting Day' },
+  { date: 'October 5, 2026', time: '10:00 AM - 5:00 PM', notes: 'Term 3 Visiting Day' },
+];
+---
+
+<BaseLayout title="School Calendar" description="Term dates, important events, exam periods, and visiting days at Greencrest Advent School">
+  <!-- Page Header -->
+  <section class="bg-gradient-to-br from-green-dark to-green-darker text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">School Calendar</h1>
+      <p class="text-xl text-green-light">2026 Academic Year</p>
+    </div>
+  </section>
+
+  <!-- Term Dates -->
+  <section class="section-padding bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="heading-primary text-center mb-8">Term Dates</h2>
+      <div class="space-y-6">
+        {termDates.map((term) => (
+          <div class="card">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+              <div>
+                <h3 class="text-2xl font-bold text-green-darker mb-2">{term.term}</h3>
+                <p class="text-gray-700">
+                  <strong>Start:</strong> {term.start} | <strong>End:</strong> {term.end}
+                </p>
+                <p class="text-gray-600 text-sm mt-1">Duration: {term.duration}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-gray-600 mt-6 italic">
+        Note: Dates are subject to change. Please confirm with the school office for the most current information.
+      </p>
+    </div>
+  </section>
+
+  <!-- Important Events -->
+  <section class="section-padding bg-cream">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="heading-primary text-center mb-8">Important School Events</h2>
+      <div class="card">
+        <div class="space-y-4">
+          {importantEvents.map((item) => (
+            <div class="flex items-start border-b border-gray-200 pb-4 last:border-0 last:pb-0">
+              <div class="flex-shrink-0 w-32 text-green-dark font-semibold">
+                {item.date}
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center gap-2">
+                  <span class={`px-2 py-1 rounded text-xs font-medium ${
+                    item.type === 'academic' ? 'bg-green-light text-green-dark' :
+                    item.type === 'exam' ? 'bg-red-100 text-red-700' :
+                    item.type === 'holiday' ? 'bg-blue-100 text-blue-700' :
+                    'bg-purple-100 text-purple-700'
+                  }`}>
+                    {item.type}
+                  </span>
+                  <span class="font-semibold text-gray-800">{item.event}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Exam Periods -->
+  <section class="section-padding bg-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="heading-primary text-center mb-8">Examination Periods</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {examPeriods.map((exam) => (
+          <div class="card bg-red-50 border-2 border-red-200">
+            <h3 class="text-xl font-bold text-red-800 mb-2">{exam.period}</h3>
+            <p class="text-gray-700">
+              <strong>Dates:</strong> {exam.dates}
+            </p>
+          </div>
+        ))}
+      </div>
+      <p class="text-center text-gray-600 mt-6">
+        Students should prepare well in advance for examinations. Study schedules and revision materials are provided by teachers.
+      </p>
+    </div>
+  </section>
+
+  <!-- Visiting Days -->
+  <section class="section-padding bg-green-light/20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="heading-primary text-center mb-8">Visiting Days (Boarding Students)</h2>
+      <div class="card">
+        <p class="text-gray-700 mb-6">
+          Parents and guardians of boarding students are welcome to visit on designated visiting days. We encourage families to spend quality time together during these special days.
+        </p>
+        <div class="space-y-4">
+          {visitingDays.map((visit) => (
+            <div class="bg-white p-4 rounded-lg border-l-4 border-green-dark">
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                <div>
+                  <h3 class="font-bold text-green-darker mb-1">{visit.date}</h3>
+                  <p class="text-gray-700">{visit.notes}</p>
+                </div>
+                <div class="mt-2 md:mt-0">
+                  <span class="text-green-dark font-semibold">{visit.time}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p class="text-gray-600 text-sm mt-6">
+          <strong>Note:</strong> For security and to maintain school routines, visits outside of designated visiting days require prior arrangement with the school administration.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

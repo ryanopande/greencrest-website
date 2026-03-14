@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// In production, this would come from a CMS
+const albums = [
+  {
+    id: 1,
+    title: 'School Opening 2024',
+    cover: '/images/gallery/opening-2024.jpg',
+    count: 25,
+    date: 'January 2024'
+  },
+  {
+    id: 2,
+    title: 'Sports Day',
+    cover: '/images/gallery/sports-day.jpg',
+    count: 30,
+    date: 'December 2023'
+  },
+  {
+    id: 3,
+    title: 'Graduation Ceremony',
+    cover: '/images/gallery/graduation.jpg',
+    count: 20,
+    date: 'November 2023'
+  },
+  {
+    id: 4,
+    title: 'Music Festival',
+    cover: '/images/gallery/music-festival.jpg',
+    count: 15,
+    date: 'November 2023'
+  },
+  {
+    id: 5,
+    title: 'Community Service',
+    cover: '/images/gallery/community-service.jpg',
+    count: 18,
+    date: 'October 2023'
+  },
+  {
+    id: 6,
+    title: 'Classroom Activities',
+    cover: '/images/gallery/classroom.jpg',
+    count: 22,
+    date: 'September 2023'
+  },
+  {
+    id: 7,
+    title: 'Boarding Life',
+    cover: '/images/gallery/boarding.jpg',
+    count: 16,
+    date: 'September 2023'
+  },
+  {
+    id: 8,
+    title: 'Field Trips',
+    cover: '/images/gallery/field-trip.jpg',
+    count: 12,
+    date: 'August 2023'
+  },
+  {
+    id: 9,
+    title: 'Cultural Day',
+    cover: '/images/gallery/cultural-day.jpg',
+    count: 28,
+    date: 'July 2023'
+  },
+];
+---
+
+<BaseLayout title="Gallery" description="Photo gallery showcasing life at Greencrest Advent School">
+  <!-- Page Header -->
+  <section class="bg-gradient-to-br from-green-dark to-green-darker text-white py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Photo Gallery</h1>
+      <p class="text-xl text-green-light">Capturing Moments at Greencrest Advent School</p>
+    </div>
+  </section>
+
+  <!-- Gallery Grid -->
+  <section class="section-padding bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {albums.map((album) => (
+          <a href={`/gallery/${album.id}`} class="card overflow-hidden group hover:shadow-xl transition-shadow">
+            <div class="relative overflow-hidden">
+              <img
+                src={album.cover}
+                alt={album.title}
+                class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                onerror="this.src='https://via.placeholder.com/600x400/a8d5a3/3d6b2f?text=Gallery+Photo'"
+              />
+              <div class="absolute inset-0 bg-green-darker/0 group-hover:bg-green-darker/40 transition-colors duration-300 flex items-center justify-center">
+                <span class="text-white opacity-0 group-hover:opacity-100 transition-opacity font-semibold">
+                  View Album
+                </span>
+              </div>
+            </div>
+            <div class="p-4">
+              <h3 class="heading-tertiary mb-2">{album.title}</h3>
+              <div class="flex items-center justify-between text-sm text-gray-600">
+                <span>{album.count} photos</span>
+                <span>{album.date}</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="section-padding bg-green-light/20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="heading-primary mb-6">Share Your Photos</h2>
+      <p class="text-lg text-gray-700 mb-8">
+        Parents and students are welcome to share photos from school events. Please contact us if you'd like to contribute to our gallery.
+      </p>
+      <a href="/contact" class="btn-primary inline-block">
+        Contact Us
+      </a>
+    </div>
+  </section>
+</BaseLayout>
