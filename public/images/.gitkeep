@@ -1,0 +1,10 @@
+# Image Directory
+
+Place all school images in this directory:
+- School building photos
+- Student activities
+- Staff photos
+- Event photos
+- Gallery images
+
+Images will be referenced as `/images/filename.jpg` in the code.
